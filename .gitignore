@@ -1,0 +1,24 @@
+# Archivos generados por Flutter / Dart
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+pubspec.lock
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Plataformas Android / iOS (se generan con `flutter create .`)
+**/android/local.properties
+**/android/.gradle/
+**/ios/Pods/
+**/ios/Flutter/Generated.xcconfig
