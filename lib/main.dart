@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'screens/home_screen.dart';
 
-/// Punto de entrada de la aplicación.
 void main() {
   runApp(const RadarApp());
 }

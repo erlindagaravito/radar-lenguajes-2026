@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/lenguaje.dart';
 
-/// Tarjeta con estadísticas de los lenguajes que se están mostrando.
 class ResumenCard extends StatelessWidget {
   const ResumenCard({
     super.key,

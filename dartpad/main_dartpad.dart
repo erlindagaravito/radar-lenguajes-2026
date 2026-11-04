@@ -1,10 +1,5 @@
-// Archivo generado automáticamente para DartPad.
-// El código ordenado por carpetas está en lib/.
-
 import 'package:flutter/material.dart';
 
-// ===== lib/main.dart =====
-/// Punto de entrada de la aplicación.
 void main() {
   runApp(const RadarApp());
 }
@@ -26,10 +21,6 @@ class RadarApp extends StatelessWidget {
   }
 }
 
-// ===== lib/models/anillo.dart =====
-/// Los cuatro anillos del radar tecnológico, del más seguro al más riesgoso.
-///
-/// Es un "enum mejorado": cada valor guarda su etiqueta y sus colores.
 enum Anillo {
   adoptar('Adoptar', Color(0xFF2E7D32), Color(0xFFE8F5E9)),
   probarConCautela('Probar con cautela', Color(0xFFEF6C00), Color(0xFFFFF3E0)),
@@ -38,21 +29,13 @@ enum Anillo {
 
   const Anillo(this.etiqueta, this.color, this.colorSuave);
 
-  /// Texto que se muestra en pantalla.
   final String etiqueta;
 
-  /// Color principal del anillo.
   final Color color;
 
-  /// Color claro para fondos.
   final Color colorSuave;
 }
 
-// ===== lib/models/lenguaje.dart =====
-/// Representa un lenguaje de programación dentro del radar.
-///
-/// Es una clase inmutable (todos sus campos son `final`): una vez creado
-/// el objeto, sus datos no cambian.
 class Lenguaje {
   const Lenguaje({
     required this.nombre,
@@ -67,29 +50,20 @@ class Lenguaje {
 
   final String nombre;
 
-  /// Para qué se usa principalmente (por ejemplo, "Análisis de datos").
   final String enfoque;
 
-  /// Anillo del radar donde lo clasifiqué.
   final Anillo anillo;
 
-  /// Datos de la encuesta Stack Overflow 2026.
-  /// Son nulos (`?`) porque algunos lenguajes, como Crystal, no aparecen.
   final double? usoPct;
   final double? deseadoPct;
   final double? admiradoPct;
 
-  /// Datos que respaldan la clasificación.
   final List<String> evidencias;
 
-  /// Mi conclusión sobre el lenguaje.
   final String veredicto;
 
-  /// `true` si el lenguaje aparece en la encuesta de Stack Overflow.
   bool get tieneDatosEncuesta => usoPct != null && admiradoPct != null;
 
-  /// Diferencia entre cuánto lo admiran y cuánto lo usan.
-  /// Una brecha grande significa "muy querido, pero poco usado".
   double? get brechaAmorUso =>
       tieneDatosEncuesta ? admiradoPct! - usoPct! : null;
 
@@ -97,10 +71,6 @@ class Lenguaje {
   String toString() => 'Lenguaje($nombre, ${anillo.etiqueta})';
 }
 
-// ===== lib/data/lenguajes_data.dart =====
-/// Datos del radar.
-/// Fuente de los porcentajes: Stack Overflow Developer Survey 2026
-/// (uso = "trabajo extenso el último año"; admirado = lo usa y quiere seguir).
 const List<Lenguaje> lenguajesRadar = [
   Lenguaje(
     nombre: 'Dart / Flutter',
@@ -199,8 +169,6 @@ const List<Lenguaje> lenguajesRadar = [
   ),
 ];
 
-// ===== lib/services/radar_service.dart =====
-/// Formas de ordenar la lista de lenguajes.
 enum Orden {
   uso('Más usados'),
   admiracion('Más admirados'),
@@ -210,24 +178,16 @@ enum Orden {
   final String etiqueta;
 }
 
-/// Lógica del radar, separada de la interfaz.
-///
-/// Aquí está la parte funcional del proyecto: los métodos no modifican
-/// la lista original, sino que devuelven listas o valores nuevos usando
-/// `where` (filter), `map` y `reduce`.
 class RadarService {
   const RadarService(this.lenguajes);
 
   final List<Lenguaje> lenguajes;
 
-  /// FILTER: devuelve solo los lenguajes de un anillo.
-  /// Si [anillo] es null, devuelve todos.
   List<Lenguaje> filtrarPorAnillo(Anillo? anillo) {
     if (anillo == null) return List.of(lenguajes);
     return lenguajes.where((l) => l.anillo == anillo).toList();
   }
 
-  /// Devuelve una copia ordenada, sin tocar la lista original.
   List<Lenguaje> ordenar(List<Lenguaje> lista, Orden orden) {
     final copia = [...lista];
     switch (orden) {
@@ -242,7 +202,6 @@ class RadarService {
     return copia;
   }
 
-  /// MAP + REDUCE: promedio de uso, ignorando los lenguajes sin datos.
   double promedioUso(List<Lenguaje> lista) {
     final usos = lista.map((l) => l.usoPct).whereType<double>().toList();
     if (usos.isEmpty) return 0;
@@ -250,7 +209,6 @@ class RadarService {
     return suma / usos.length;
   }
 
-  /// REDUCE: el lenguaje con mayor porcentaje de admiración.
   Lenguaje? masAdmirado(List<Lenguaje> lista) {
     final conDatos = lista.where((l) => l.admiradoPct != null).toList();
     if (conDatos.isEmpty) return null;
@@ -258,15 +216,12 @@ class RadarService {
         .reduce((a, b) => a.admiradoPct! >= b.admiradoPct! ? a : b);
   }
 
-  /// Cuántos lenguajes hay en cada anillo.
   Map<Anillo, int> conteoPorAnillo() => {
         for (final anillo in Anillo.values)
           anillo: lenguajes.where((l) => l.anillo == anillo).length,
       };
 }
 
-// ===== lib/screens/home_screen.dart =====
-/// Pantalla principal: resumen, filtros y lista de lenguajes.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -277,7 +232,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final RadarService _servicio = const RadarService(lenguajesRadar);
 
-  /// Estado de la pantalla: qué anillo está seleccionado y cómo ordenar.
   Anillo? _anilloSeleccionado;
   Orden _orden = Orden.uso;
 
@@ -327,7 +281,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Chips para filtrar por anillo. "Todos" quita el filtro.
   Widget _construirFiltros() {
     return Wrap(
       spacing: 8,
@@ -359,8 +312,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// ===== lib/screens/detalle_screen.dart =====
-/// Pantalla de detalle: datos, evidencias y veredicto de un lenguaje.
 class DetalleScreen extends StatelessWidget {
   const DetalleScreen({super.key, required this.lenguaje});
 
@@ -426,7 +377,6 @@ class DetalleScreen extends StatelessWidget {
     );
   }
 
-  /// Si no hay datos de la encuesta (caso Crystal), muestra un aviso.
   List<Widget> _construirMetricas() {
     if (!lenguaje.tieneDatosEncuesta) {
       return const [
@@ -456,8 +406,6 @@ class DetalleScreen extends StatelessWidget {
   }
 }
 
-// ===== lib/widgets/lenguaje_card.dart =====
-/// Tarjeta que resume un lenguaje en la lista principal.
 class LenguajeCard extends StatelessWidget {
   const LenguajeCard({super.key, required this.lenguaje, required this.onTap});
 
@@ -542,8 +490,6 @@ class LenguajeCard extends StatelessWidget {
   }
 }
 
-// ===== lib/widgets/resumen_card.dart =====
-/// Tarjeta con estadísticas de los lenguajes que se están mostrando.
 class ResumenCard extends StatelessWidget {
   const ResumenCard({
     super.key,
@@ -597,8 +543,6 @@ class ResumenCard extends StatelessWidget {
   }
 }
 
-// ===== lib/widgets/barra_metrica.dart =====
-/// Barra horizontal que muestra un porcentaje (de 0 a 100).
 class BarraMetrica extends StatelessWidget {
   const BarraMetrica({
     super.key,

@@ -1,10 +1,3 @@
-"""Une todos los archivos de lib/ en un solo archivo para DartPad.
-
-DartPad (dartpad.dev) solo acepta un archivo, así que este script copia
-el código de cada archivo y quita los imports internos del proyecto.
-
-Uso:  python3 tool/generar_dartpad.py
-"""
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
@@ -22,9 +15,6 @@ ORDEN = [
 ]
 
 partes = [
-    "// Archivo generado automáticamente para DartPad.",
-    "// El código ordenado por carpetas está en lib/.",
-    "",
     "import 'package:flutter/material.dart';",
     "",
 ]
@@ -33,7 +23,6 @@ for ruta in ORDEN:
     cuerpo = [l for l in lineas if not l.startswith("import ")]
     while cuerpo and not cuerpo[0].strip():
         cuerpo.pop(0)
-    partes.append(f"// ===== lib/{ruta} =====")
     partes.extend(cuerpo)
     partes.append("")
 

@@ -1,9 +1,6 @@
 import '../models/anillo.dart';
 import '../models/lenguaje.dart';
 
-/// Datos del radar.
-/// Fuente de los porcentajes: Stack Overflow Developer Survey 2026
-/// (uso = "trabajo extenso el último año"; admirado = lo usa y quiere seguir).
 const List<Lenguaje> lenguajesRadar = [
   Lenguaje(
     nombre: 'Dart / Flutter',

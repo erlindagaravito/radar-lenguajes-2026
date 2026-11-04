@@ -8,7 +8,6 @@ import '../widgets/lenguaje_card.dart';
 import '../widgets/resumen_card.dart';
 import 'detalle_screen.dart';
 
-/// Pantalla principal: resumen, filtros y lista de lenguajes.
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -19,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final RadarService _servicio = const RadarService(lenguajesRadar);
 
-  /// Estado de la pantalla: qué anillo está seleccionado y cómo ordenar.
   Anillo? _anilloSeleccionado;
   Orden _orden = Orden.uso;
 
@@ -69,7 +67,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Chips para filtrar por anillo. "Todos" quita el filtro.
   Widget _construirFiltros() {
     return Wrap(
       spacing: 8,

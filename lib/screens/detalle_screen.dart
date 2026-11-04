@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../models/lenguaje.dart';
 import '../widgets/barra_metrica.dart';
 
-/// Pantalla de detalle: datos, evidencias y veredicto de un lenguaje.
 class DetalleScreen extends StatelessWidget {
   const DetalleScreen({super.key, required this.lenguaje});
 
@@ -69,7 +68,6 @@ class DetalleScreen extends StatelessWidget {
     );
   }
 
-  /// Si no hay datos de la encuesta (caso Crystal), muestra un aviso.
   List<Widget> _construirMetricas() {
     if (!lenguaje.tieneDatosEncuesta) {
       return const [

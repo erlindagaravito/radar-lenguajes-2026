@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/lenguaje.dart';
 
-/// Tarjeta que resume un lenguaje en la lista principal.
 class LenguajeCard extends StatelessWidget {
   const LenguajeCard({super.key, required this.lenguaje, required this.onTap});
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/// Barra horizontal que muestra un porcentaje (de 0 a 100).
 class BarraMetrica extends StatelessWidget {
   const BarraMetrica({
     super.key,
