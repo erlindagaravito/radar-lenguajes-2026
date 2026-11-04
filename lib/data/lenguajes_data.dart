@@ -1,0 +1,103 @@
+import '../models/anillo.dart';
+import '../models/lenguaje.dart';
+
+/// Datos del radar.
+/// Fuente de los porcentajes: Stack Overflow Developer Survey 2026
+/// (uso = "trabajo extenso el último año"; admirado = lo usa y quiere seguir).
+const List<Lenguaje> lenguajesRadar = [
+  Lenguaje(
+    nombre: 'Dart / Flutter',
+    enfoque: 'Apps multiplataforma',
+    anillo: Anillo.adoptar,
+    usoPct: 4.9,
+    deseadoPct: 4.1,
+    admiradoPct: 42.3,
+    evidencias: [
+      'TIOBE: subió del puesto 41 al 27 entre oct-2025 y oct-2026.',
+      'TIOBE relaciona su crecimiento con Flutter.',
+      'Es el más usado de los 7 lenguajes del corte (Stack Overflow 2026).',
+    ],
+    veredicto: 'Adoptar para apps móviles y multiplataforma nuevas.',
+  ),
+  Lenguaje(
+    nombre: 'R',
+    enfoque: 'Análisis de datos y estadística',
+    anillo: Anillo.adoptar,
+    usoPct: 4.5,
+    deseadoPct: 3.3,
+    admiradoPct: 40.7,
+    evidencias: [
+      'TIOBE mayo 2026: puesto 8, igualando su mejor posición histórica.',
+      'TIOBE: la estadística se concentra en dos lenguajes, Python y R.',
+      'En octubre de 2026 superó a SQL en TIOBE.',
+    ],
+    veredicto: 'Adoptar para análisis estadístico y ciencia de datos.',
+  ),
+  Lenguaje(
+    nombre: 'Elixir',
+    enfoque: 'Sistemas distribuidos y tiempo real',
+    anillo: Anillo.probarConCautela,
+    usoPct: 2.6,
+    deseadoPct: 4.7,
+    admiradoPct: 62.1,
+    evidencias: [
+      'Uno de los lenguajes más admirados de 2026 (62 %).',
+      'Su framework Phoenix tiene 69,5 % de admiración.',
+      'Pero solo el 2,6 % lo usa: es difícil conseguir programadores.',
+    ],
+    veredicto: 'Probar en un servicio piloto de tiempo real.',
+  ),
+  Lenguaje(
+    nombre: 'F#',
+    enfoque: 'Programación funcional en .NET',
+    anillo: Anillo.probarConCautela,
+    usoPct: 1.2,
+    deseadoPct: 2.3,
+    admiradoPct: 48.3,
+    evidencias: [
+      'Se integra con C# y todo el ecosistema .NET.',
+      '48 % de admiración, pero 1,2 % de uso.',
+      'Microsoft le da más prioridad a C#.',
+    ],
+    veredicto: 'Probar solo en equipos que ya trabajan con .NET.',
+  ),
+  Lenguaje(
+    nombre: 'Crystal',
+    enfoque: 'Sintaxis de Ruby con velocidad compilada',
+    anillo: Anillo.observar,
+    evidencias: [
+      'No aparece en la encuesta Stack Overflow 2026.',
+      'Sigue publicando versiones: 1.22 en octubre de 2026.',
+      'Hay una propuesta para darle soporte oficial en Fedora 46.',
+    ],
+    veredicto: 'Vivo, pero sin masa crítica. Revisar en 2027.',
+  ),
+  Lenguaje(
+    nombre: 'Clojure',
+    enfoque: 'Lisp sobre la JVM',
+    anillo: Anillo.observar,
+    usoPct: 1.3,
+    deseadoPct: 2.5,
+    admiradoPct: 48.7,
+    evidencias: [
+      'Su uso bajó de 1,9 % (2021) a 1,3 % (2026).',
+      'Solo el 2,5 % quiere aprenderlo.',
+      'Fue de los mejor pagados en 2021-2022, pero no llega talento nuevo.',
+    ],
+    veredicto: 'Mantener lo que existe, no iniciar proyectos nuevos.',
+  ),
+  Lenguaje(
+    nombre: 'Elm',
+    enfoque: 'Frontend funcional sin errores en ejecución',
+    anillo: Anillo.dejarMorir,
+    usoPct: 0.1,
+    deseadoPct: 0.1,
+    admiradoPct: 94.1,
+    evidencias: [
+      'El más admirado de 2026 (94 %), pero lo usa solo el 0,1 %.',
+      'Solo 17 de 14.099 personas lo usaron en el último año.',
+      'Pasaron casi 7 años sin compilador nuevo (0.19.2, julio 2026).',
+    ],
+    veredicto: 'Gran idea, pero su ecosistema se agotó.',
+  ),
+];
