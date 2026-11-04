@@ -50,13 +50,13 @@ class Lenguaje {
 
 ```dart
 double promedioUso(List<Lenguaje> lista) {
-  final usos = lista.map((l) => l.usoPct).whereType<double>().toList(); // map
+  final usos = lista.map((l) => l.usoPct).whereType<double>().toList();
   if (usos.isEmpty) return 0;
-  return usos.reduce((a, b) => a + b) / usos.length;                      // reduce
+  return usos.reduce((a, b) => a + b) / usos.length;
 }
 
 List<Lenguaje> filtrarPorAnillo(Anillo? anillo) =>
-    lenguajes.where((l) => l.anillo == anillo).toList();                   // filter
+    lenguajes.where((l) => l.anillo == anillo).toList();
 ```
 
 **3. Programación declarativa / reactiva (UI):** en Flutter la interfaz se *describe* según el estado. Cuando cambia el filtro, `setState` vuelve a construir la pantalla.
@@ -82,27 +82,27 @@ List<Lenguaje> filtrarPorAnillo(Anillo? anillo) =>
 
 ```
 lib/
-├── main.dart                  # Punto de entrada y tema de la app
+├── main.dart
 ├── models/
-│   ├── anillo.dart            # Enum con los 4 anillos del radar
-│   └── lenguaje.dart          # Clase Lenguaje (modelo inmutable)
+│   ├── anillo.dart
+│   └── lenguaje.dart
 ├── data/
-│   └── lenguajes_data.dart    # Los 7 lenguajes con datos de 2026
+│   └── lenguajes_data.dart
 ├── services/
-│   └── radar_service.dart     # Lógica funcional: filtrar, ordenar, map/reduce
+│   └── radar_service.dart
 ├── screens/
-│   ├── home_screen.dart       # Pantalla principal (StatefulWidget)
-│   └── detalle_screen.dart    # Detalle de cada lenguaje
+│   ├── home_screen.dart
+│   └── detalle_screen.dart
 └── widgets/
-    ├── lenguaje_card.dart     # Tarjeta de la lista
-    ├── resumen_card.dart      # Estadísticas
-    └── barra_metrica.dart     # Barra de porcentaje
+    ├── lenguaje_card.dart
+    ├── resumen_card.dart
+    └── barra_metrica.dart
 test/
-└── radar_service_test.dart    # Pruebas unitarias y de widget
+└── radar_service_test.dart
 dartpad/
-└── main_dartpad.dart          # Toda la app en un solo archivo para DartPad
+└── main_dartpad.dart
 tool/
-└── generar_dartpad.py         # Script que genera el archivo de DartPad
+└── generar_dartpad.py
 ```
 
 La arquitectura separa **datos → lógica → interfaz**. Así se puede cambiar la fuente de datos (por ejemplo, por una API) sin tocar las pantallas.
@@ -118,9 +118,9 @@ La arquitectura separa **datos → lógica → interfaz**. Así se puede cambiar
 ```bash
 git clone https://github.com/<usuario>/radar-lenguajes-2026.git
 cd radar-lenguajes-2026
-flutter create .          # genera las carpetas android/, ios/, web/
+flutter create .
 flutter pub get
-flutter run -d chrome     # o en un emulador / celular
+flutter run -d chrome
 ```
 
 **Pruebas:**
